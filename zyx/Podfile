@@ -1,0 +1,14 @@
+platform :ios, '8.0'
+workspace 'zyx'
+
+target :zyx do
+    xcodeproj 'zyx.xcodeproj'
+     pod 'AFNetworking'
+
+pod 'MBProgressHUD'
+pod 'TPKeyboardAvoiding'
+pod 'Masonry'
+pod 'MJRefresh'
+pod 'MJExtension'
+pod 'iCarousel'
+end
