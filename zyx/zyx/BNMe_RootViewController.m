@@ -7,7 +7,7 @@
 //
 
 #import "BNMe_RootViewController.h"
-
+#import "BNNetAPIManager.h"
 @interface BNMe_RootViewController ()
 
 @end
@@ -17,6 +17,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[BNNetAPIManager sharedManager] request_Captcha:@"xxxx" andBlock:^(id data, NSError *error) {
+        if(data)
+        {
+            NSLog(@"---%@",data);
+            
+        }
+        if(error)
+        {
+            NSLog(@"-error--%@",error);
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

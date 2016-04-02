@@ -11,4 +11,8 @@
 @interface BNNetAPIManager : NSObject
 
 + (instancetype)sharedManager;
+
+#pragma mark test
+
+-(void)request_Captcha:(NSString *)number andBlock:(void (^)(id data, NSError *error))block;
 @end

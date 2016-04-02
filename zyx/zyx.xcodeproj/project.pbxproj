@@ -543,6 +543,7 @@
 		2090F73F1CAF56A600AA850F /* YLGIFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F73C1CAF56A600AA850F /* YLGIFImage.m */; };
 		2090F7401CAF56A600AA850F /* YLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F73E1CAF56A600AA850F /* YLImageView.m */; };
 		2090F7431CAF7DCA00AA850F /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F7421CAF7DCA00AA850F /* Order.m */; };
+		2090F7461CAFFB1200AA850F /* BNNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F7451CAFFB1200AA850F /* BNNetAPIClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1115,6 +1116,8 @@
 		2090F73E1CAF56A600AA850F /* YLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLImageView.m; sourceTree = "<group>"; };
 		2090F7411CAF7DCA00AA850F /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
 		2090F7421CAF7DCA00AA850F /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
+		2090F7441CAFFB1200AA850F /* BNNetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNNetAPIClient.h; sourceTree = "<group>"; };
+		2090F7451CAFFB1200AA850F /* BNNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNNetAPIClient.m; sourceTree = "<group>"; };
 		3C381625103B2963D2567A57 /* Pods-zyx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zyx.release.xcconfig"; path = "Pods/Target Support Files/Pods-zyx/Pods-zyx.release.xcconfig"; sourceTree = "<group>"; };
 		83872F834D05C16E92513792 /* Pods-zyx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zyx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zyx/Pods-zyx.debug.xcconfig"; sourceTree = "<group>"; };
 		EAE0A94850A26E889459465B /* libPods-zyx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zyx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2091,6 +2094,8 @@
 			children = (
 				2090F6EE1CAEDD1800AA850F /* BNNetAPIManager.h */,
 				2090F6EF1CAEDD1800AA850F /* BNNetAPIManager.m */,
+				2090F7441CAFFB1200AA850F /* BNNetAPIClient.h */,
+				2090F7451CAFFB1200AA850F /* BNNetAPIClient.m */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -2849,6 +2854,7 @@
 				2090F7341CAF53CF00AA850F /* UIImageView+HighlightedWebCache.m in Sources */,
 				2090F72B1CAF53CF00AA850F /* SDWebImageDecoder.m in Sources */,
 				2090F7331CAF53CF00AA850F /* UIImage+WebP.m in Sources */,
+				2090F7461CAFFB1200AA850F /* BNNetAPIClient.m in Sources */,
 				2090F72E1CAF53CF00AA850F /* SDWebImageManager.m in Sources */,
 				2090F6F61CAEDEE700AA850F /* BNRootTabController.m in Sources */,
 				2090F6FF1CAF437600AA850F /* BNOrder_RootViewController.m in Sources */,
