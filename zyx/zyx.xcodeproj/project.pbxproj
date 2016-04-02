@@ -542,6 +542,7 @@
 		2090F7391CAF554C00AA850F /* UIImage+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F7381CAF554C00AA850F /* UIImage+Common.m */; };
 		2090F73F1CAF56A600AA850F /* YLGIFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F73C1CAF56A600AA850F /* YLGIFImage.m */; };
 		2090F7401CAF56A600AA850F /* YLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F73E1CAF56A600AA850F /* YLImageView.m */; };
+		2090F7431CAF7DCA00AA850F /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F7421CAF7DCA00AA850F /* Order.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1112,6 +1113,8 @@
 		2090F73C1CAF56A600AA850F /* YLGIFImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLGIFImage.m; sourceTree = "<group>"; };
 		2090F73D1CAF56A600AA850F /* YLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLImageView.h; sourceTree = "<group>"; };
 		2090F73E1CAF56A600AA850F /* YLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLImageView.m; sourceTree = "<group>"; };
+		2090F7411CAF7DCA00AA850F /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
+		2090F7421CAF7DCA00AA850F /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		3C381625103B2963D2567A57 /* Pods-zyx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zyx.release.xcconfig"; path = "Pods/Target Support Files/Pods-zyx/Pods-zyx.release.xcconfig"; sourceTree = "<group>"; };
 		83872F834D05C16E92513792 /* Pods-zyx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zyx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zyx/Pods-zyx.debug.xcconfig"; sourceTree = "<group>"; };
 		EAE0A94850A26E889459465B /* libPods-zyx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zyx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1180,6 +1183,8 @@
 		2090F2CB1CAED47B00AA850F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2090F7411CAF7DCA00AA850F /* Order.h */,
+				2090F7421CAF7DCA00AA850F /* Order.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2835,6 +2840,7 @@
 				2090F6E81CAEDA1400AA850F /* BNBaseViewController.m in Sources */,
 				2090F7321CAF53CF00AA850F /* UIImage+MultiFormat.m in Sources */,
 				2090F7351CAF53CF00AA850F /* UIImageView+WebCache.m in Sources */,
+				2090F7431CAF7DCA00AA850F /* Order.m in Sources */,
 				2090F7021CAF439000AA850F /* BNTask_RootViewController.m in Sources */,
 				2090F7361CAF53CF00AA850F /* UIView+WebCacheOperation.m in Sources */,
 				2090F6F91CAF434400AA850F /* BNMe_RootViewController.m in Sources */,

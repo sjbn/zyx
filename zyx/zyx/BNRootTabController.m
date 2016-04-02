@@ -94,7 +94,7 @@
 - (void)customizeTabBarForController {
     
     NSArray *tabBarItemImages = @[@"tweet",@"project", @"task", @"me"];
-    NSArray *tabBarItemTitles = @[@"主页",@"项目", @"任务",  @"我"];
+    NSArray *tabBarItemTitles = @[@"主页",@"发布催单", @"接单",  @"众誉宝"];
     
     NSInteger index = 0;
     for (UITabBarItem *item in [[self tabBar] items]) {
