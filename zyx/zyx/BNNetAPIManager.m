@@ -21,7 +21,11 @@
 
 -(void)request_Captcha:(NSString *)number andBlock:(void (^)(id data, NSError *error))block
 {
-    [[BNNetAPIClient sharedHTTPClient] request_Captcha:number andBlock:block];
+    NSString * path=@"user/CaptchaCode";
+    
+    NSMutableDictionary*parameters =[NSMutableDictionary dictionary];
+    parameters[@"phoneNumber"] = number;
+    [[BNNetAPIClient sharedHTTPClient] requestJsonDataWithPath:path withParams:parameters withMethodType:Get andBlock:block];
 }
 //-(void)test
 //{

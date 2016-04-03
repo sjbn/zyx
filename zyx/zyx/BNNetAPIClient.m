@@ -26,14 +26,34 @@
     }
     return self;
 }
-
-- (void)request_Captcha:(NSString *)number andBlock:(void (^)(id data, NSError *error))block{
-    NSMutableDictionary*parameters =[NSMutableDictionary dictionary];
-    parameters[@"phoneNumber"] = number;
-    [self GET:@"user/CaptchaCode" parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        block(responseObject,nil);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        block(nil,error);
-    }];
+- (void)requestJsonDataWithPath:(NSString *)aPath
+                     withParams:(NSDictionary*)params
+                 withMethodType:(NetworkMethod)method
+                       andBlock:(void (^)(id data, NSError *error))block{
+    
+    if (!aPath || aPath.length <= 0) {
+        return;
+    }
+    //log请求数据
+    DebugLog(@"\n===========request===========\n%@\n%@:\n%@", kNetworkMethodName[method], aPath, params);
+    aPath = [aPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    switch (method) {
+        case Get:{
+            [self GET:aPath parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                block(responseObject,nil);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                block(nil,error);
+            }];}
+            break;
+        case Post:{
+            [self POST:aPath parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                block(responseObject,nil);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                block(nil,error);
+            }];}
+            break;
+            default:
+            break;
+    }
 }
 @end

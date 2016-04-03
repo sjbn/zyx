@@ -23,23 +23,22 @@ typedef enum {
 + (id)sharedJsonClient;
 + (id)changeJsonClient;
 
--(void)request_Captcha:(NSString *)number andBlock:(void (^)(id data, NSError *error))block;
 - (void)requestJsonDataWithPath:(NSString *)aPath
                      withParams:(NSDictionary*)params
                  withMethodType:(NetworkMethod)method
                        andBlock:(void (^)(id data, NSError *error))block;
 
-- (void)requestJsonDataWithPath:(NSString *)aPath
-                     withParams:(NSDictionary*)params
-                 withMethodType:(NetworkMethod)method
-                  autoShowError:(BOOL)autoShowError
-                       andBlock:(void (^)(id data, NSError *error))block;
-
-- (void)requestJsonDataWithPath:(NSString *)aPath
-                           file:(NSDictionary *)file
-                     withParams:(NSDictionary*)params
-                 withMethodType:(NetworkMethod)method
-                       andBlock:(void (^)(id data, NSError *error))block;
+//- (void)requestJsonDataWithPath:(NSString *)aPath
+//                     withParams:(NSDictionary*)params
+//                 withMethodType:(NetworkMethod)method
+//                  autoShowError:(BOOL)autoShowError
+//                       andBlock:(void (^)(id data, NSError *error))block;
+//
+//- (void)requestJsonDataWithPath:(NSString *)aPath
+//                           file:(NSDictionary *)file
+//                     withParams:(NSDictionary*)params
+//                 withMethodType:(NetworkMethod)method
+//                       andBlock:(void (^)(id data, NSError *error))block;
 //
 //
 //- (void)reportIllegalContentWithType:(IllegalContentType)type
