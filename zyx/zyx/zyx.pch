@@ -50,6 +50,7 @@
 #define kBaiduSK @""
 
 #define KBaseUrlStr @"http://192.168.1.11/api/"
+#define kDomain @"xx.com.xx"
 //测试地址
 #define kBaseUrlStr_Test @"https://coding.net/"
 

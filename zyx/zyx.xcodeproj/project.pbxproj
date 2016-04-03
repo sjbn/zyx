@@ -544,6 +544,8 @@
 		2090F7401CAF56A600AA850F /* YLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F73E1CAF56A600AA850F /* YLImageView.m */; };
 		2090F7431CAF7DCA00AA850F /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F7421CAF7DCA00AA850F /* Order.m */; };
 		2090F7461CAFFB1200AA850F /* BNNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F7451CAFFB1200AA850F /* BNNetAPIClient.m */; };
+		2090F74C1CB0A11000AA850F /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F74B1CB0A11000AA850F /* Login.m */; };
+		2090F74F1CB0A13E00AA850F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F74E1CB0A13E00AA850F /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1118,6 +1120,10 @@
 		2090F7421CAF7DCA00AA850F /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
 		2090F7441CAFFB1200AA850F /* BNNetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNNetAPIClient.h; sourceTree = "<group>"; };
 		2090F7451CAFFB1200AA850F /* BNNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNNetAPIClient.m; sourceTree = "<group>"; };
+		2090F74A1CB0A11000AA850F /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
+		2090F74B1CB0A11000AA850F /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
+		2090F74D1CB0A13E00AA850F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		2090F74E1CB0A13E00AA850F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		3C381625103B2963D2567A57 /* Pods-zyx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zyx.release.xcconfig"; path = "Pods/Target Support Files/Pods-zyx/Pods-zyx.release.xcconfig"; sourceTree = "<group>"; };
 		83872F834D05C16E92513792 /* Pods-zyx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zyx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zyx/Pods-zyx.debug.xcconfig"; sourceTree = "<group>"; };
 		EAE0A94850A26E889459465B /* libPods-zyx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zyx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1188,6 +1194,10 @@
 			children = (
 				2090F7411CAF7DCA00AA850F /* Order.h */,
 				2090F7421CAF7DCA00AA850F /* Order.m */,
+				2090F74A1CB0A11000AA850F /* Login.h */,
+				2090F74B1CB0A11000AA850F /* Login.m */,
+				2090F74D1CB0A13E00AA850F /* User.h */,
+				2090F74E1CB0A13E00AA850F /* User.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2831,6 +2841,7 @@
 				2090F2BB1CAEC72600AA850F /* ViewController.m in Sources */,
 				2090F72F1CAF53CF00AA850F /* SDWebImagePrefetcher.m in Sources */,
 				2090F73F1CAF56A600AA850F /* YLGIFImage.m in Sources */,
+				2090F74F1CB0A13E00AA850F /* User.m in Sources */,
 				2090F6FC1CAF436200AA850F /* BNHome_RootViewController.m in Sources */,
 				2090F7391CAF554C00AA850F /* UIImage+Common.m in Sources */,
 				2090F2B81CAEC72600AA850F /* AppDelegate.m in Sources */,
@@ -2839,6 +2850,7 @@
 				2090F6F01CAEDD1800AA850F /* BNNetAPIManager.m in Sources */,
 				2090F6F31CAEDE2F00AA850F /* BNBaseNavigationController.m in Sources */,
 				2090F7301CAF53CF00AA850F /* UIButton+WebCache.m in Sources */,
+				2090F74C1CB0A11000AA850F /* Login.m in Sources */,
 				2090F72D1CAF53CF00AA850F /* SDWebImageDownloaderOperation.m in Sources */,
 				2090F2B51CAEC72600AA850F /* main.m in Sources */,
 				2090F72A1CAF53CF00AA850F /* SDWebImageCompat.m in Sources */,
