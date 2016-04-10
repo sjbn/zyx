@@ -16,7 +16,7 @@
 
 -(void)request_Captcha:(NSString *)number andBlock:(void (^)(id data, NSError *error))block;
 - (void)request_Register_WithParams:(id)params andBlock:(void (^)(id data, NSError *error))block;
-- (void)request_Login_WithPath:(id)params andBlock:(void (^)(id data, NSError *error))block;
+- (void)request_Login_WithParams:(id)params andBlock:(void (^)(id data, NSError *error))block;
 
 - (void)request_UserInfo_WithPath:(id)params andBlock:(void (^)(id data, NSError *error))block;
     

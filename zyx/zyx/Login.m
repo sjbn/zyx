@@ -15,7 +15,8 @@
 #import "Login.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "MJExtension.h"
-
+#import "BNNetAPIManager.h"
+#import "BNApiResult.h"
 
 
 static User *curLoginUser;
@@ -25,78 +26,108 @@ static User *curLoginUser;
 {
     self = [super init];
     if (self) {
-        self.remember_me = [NSNumber numberWithBool:YES];
+        //self.remember_me = [NSNumber numberWithBool:YES];
         self.phoneNumber = @"";
         self.password = @"";
     }
     return self;
 }
-
-- (NSString *)toPath{
-    return @"api/v2/account/login";
-}
-- (NSDictionary *)toParams{
-    NSMutableDictionary *params = @{@"account": self.phoneNumber,
-                                    @"password" : [self sha1Str: self.password],
-                                    @"remember_me" : self.remember_me? @"true" : @"false",}.mutableCopy;
-    if (self.j_captcha.length > 0) {
-        params[@"j_captcha"] = self.j_captcha;
-    }
-    return params;
-}
--(NSString*) sha1Str:(NSString*) str
-{
-    const char *cstr = [str cStringUsingEncoding:NSUTF8StringEncoding];
-    NSData *data = [NSData dataWithBytes:cstr length:str.length];
-    uint8_t digest[CC_SHA1_DIGEST_LENGTH];
-    CC_SHA1(data.bytes, (CC_LONG)data.length, digest);
-    NSMutableString* output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
-    for(int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++)
-        [output appendFormat:@"%02x", digest[i]];
-    return output;
-}
-
-
-- (NSString *)goToLoginTipWithCaptcha:(BOOL)needCaptcha{
-    if (!_phoneNumber || _phoneNumber.length <= 0) {
-        return @"请填写「手机号码」";
-    }
-    if (!_password || _password.length <= 0) {
-        return @"请填写密码";
-    }
-    if (needCaptcha && (!_j_captcha || _j_captcha.length <= 0)) {
-        return @"请填写验证码";
-    }
-    return nil;
-}
-
-+ (BOOL)isLogin{
-    NSNumber *loginStatus = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginStatus];
-    if (loginStatus.boolValue && [Login curLoginUser]) {
-        User *loginUser = [Login curLoginUser];
-        if (loginUser.status && loginUser.status.integerValue == 0) {
-            return NO;
-        }
-        return YES;
-    }else{
-        return NO;
-    }
-}
-
-+ (void)doLogin:(NSDictionary *)loginData{
+-(void)loginWithBlock:(void (^)(BNApiResult*))block{
     
-    if (loginData) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:[NSNumber numberWithBool:YES] forKey:kLoginStatus];
-        [defaults setObject:loginData forKey:kLoginUserDict];
-        curLoginUser =[User mj_objectWithKeyValues:loginData];
-        [defaults synchronize];
-        [Login setXGAccountWithCurUser];
-        
-        [self saveLoginData:loginData];
-    }else{
-        [Login doLogout];
+    BNApiResult *result=[[BNApiResult alloc]init];
+    result.IsSuccess=YES;
+    if(!self.phoneNumber||[self.phoneNumber isEqual:@""])
+    {
+        result.IsSuccess=false;
+        result.Error=@"请输入手机号";
     }
+    if(!self.password||[self.password isEqual:@""])
+    {
+        result.IsSuccess=false;
+        result.Error=[NSString stringWithFormat:@"%@ 请输入密码",result.Error] ;
+    }
+    if(!result.IsSuccess)
+    {
+        if(block){
+            block(result);
+        }
+            return;
+    }
+    
+    
+    [[BNNetAPIManager sharedManager] request_Login_WithParams:[self mj_keyValues] andBlock:^(id data, NSError *error) {
+    
+        BNApiResult *result=[BNApiResult mj_objectWithKeyValues:data];
+        DebugLog(@"%@",result);
+        if(result.IsSuccess)
+        {
+            //save token
+            curLoginUser=[[User alloc]init];
+            curLoginUser.password=self.password;
+            curLoginUser.phoneNumber=self.phoneNumber;
+            curLoginUser.status=@1;
+            curLoginUser.token=result.Data;
+            curLoginUser.loginAt=[NSDate date];
+
+        }
+        else{
+            curLoginUser=nil;
+        }
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        [defaults setObject:[curLoginUser mj_keyValues] forKey:kLoginUserDict];
+        [defaults synchronize];
+        
+        [Login setAccountWithCurUser];
+        if (block) {
+            block(result);
+        }
+    }];    
+}
++(void)Logout{
+    curLoginUser=nil;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[curLoginUser mj_keyValues] forKey:kLoginUserDict];
+    [defaults synchronize];
+    //删掉 coding 的 cookie
+    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+    [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.domain hasSuffix:kDomain]) {
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:obj];
+        }
+    }];
+    [Login setAccountWithCurUser];
+    
+}
+//todo
++ (void)setAccountWithCurUser{
+    if ([self isLogin]) {
+        User *user = [Login curLoginUser];
+        if (user && user.user_id.length > 0) {
+            NSString *global_key = user.user_id;
+            //[XGPush setAccount:global_key];
+            [(AppDelegate *)[UIApplication sharedApplication].delegate registerPush];
+        }
+    }else{
+        //        [XGPush setAccount:nil];
+        //        [XGPush unRegisterDevice];
+    }
+}
+
+
++ (User *)curLoginUser{
+    if (!curLoginUser) {
+                NSDictionary *loginData = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginUserDict];
+                curLoginUser = loginData? [User mj_objectWithKeyValues:loginData]: nil;
+        //curLoginUser=[[NSUserDefaults standardUserDefaults] objectForKey:kLoginUserDict];
+    }
+    return curLoginUser;
+}
+
++(BOOL)isLogin
+{
+  
+    return curLoginUser&&[curLoginUser.status isEqual:@1];
 }
 
 + (NSMutableDictionary *)readLoginDataList{
@@ -132,70 +163,4 @@ static User *curLoginUser;
     return [documentPath stringByAppendingPathComponent:kLoginDataListPath];
 }
 
-+ (User *)userWithGlobaykeyOrEmail:(NSString *)textStr{
-    if (textStr.length <= 0) {
-        return nil;
-    }
-    NSMutableDictionary *loginDataList = [self readLoginDataList];
-    NSDictionary *loginData = [loginDataList objectForKey:textStr];
-    return [User mj_objectWithKeyValues:loginData];
-}
-
-+ (void)setXGAccountWithCurUser{
-    if ([self isLogin]) {
-        User *user = [Login curLoginUser];
-        if (user && user.user_id.length > 0) {
-            NSString *global_key = user.user_id;
-            //[XGPush setAccount:global_key];
-            [(AppDelegate *)[UIApplication sharedApplication].delegate registerPush];
-        }
-    }else{
-//        [XGPush setAccount:nil];
-//        [XGPush unRegisterDevice];
-    }
-}
-
-+ (void)doLogout{
-    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSNumber numberWithBool:NO] forKey:kLoginStatus];
-    [defaults synchronize];
-    //删掉 coding 的 cookie
-    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
-    [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.domain hasSuffix:kDomain]) {
-            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:obj];
-        }
-    }];
-    [Login setXGAccountWithCurUser];
-}
-
-//+ (void)setPreUserEmail:(NSString *)emailStr{
-//    if (emailStr.length <= 0) {
-//        return;
-//    }
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    [defaults setObject:emailStr forKey:kLoginPreUserEmail];
-//    [defaults synchronize];
-//}
-//
-//+ (NSString *)preUserEmail{
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    return [defaults objectForKey:kLoginPreUserEmail];
-//}
-
-+ (User *)curLoginUser{
-    if (!curLoginUser) {
-        NSDictionary *loginData = [[NSUserDefaults standardUserDefaults] objectForKey:kLoginUserDict];
-        curLoginUser = loginData? [User mj_objectWithKeyValues:loginData]: nil;
-    }
-    return curLoginUser;
-}
-
-//+(BOOL)isLoginUserGlobalKey:(NSString *)global_key{
-//    if (global_key.length <= 0) {
-//        return NO;
-//    }
-//    return [[self curLoginUser].global_key isEqualToString:global_key];
-//}
 @end

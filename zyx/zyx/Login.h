@@ -8,24 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
+#import "BNApiResult.h"
 
 @interface Login : NSObject
 //请求
 @property (readwrite, nonatomic, strong) NSString *phoneNumber, *password, *j_captcha;
 @property (readwrite, nonatomic, strong) NSNumber *remember_me;
+/** token*/
+@property(nonatomic,strong) NSString * token;
 
-- (NSString *)goToLoginTipWithCaptcha:(BOOL)needCaptcha;
-- (NSString *)toPath;
-- (NSDictionary *)toParams;
+
+- (void) loginWithBlock:(void (^)(BNApiResult*))block;
+
 
 + (BOOL) isLogin;
-+ (void) doLogin:(NSDictionary *)loginData;
-+ (void) doLogout;
-//+ (void)setPreUserEmail:(NSString *)emailStr;
-//+ (NSString *)preUserEmail;
++ (void) Logout;
 + (User *)curLoginUser;
-+ (void)setXGAccountWithCurUser;
-+ (User *)userWithGlobaykeyOrEmail:(NSString *)textStr;
-+ (NSMutableDictionary *)readLoginDataList;
-//+(BOOL)isLoginUserGlobalKey:(NSString *)global_key;
++ (void)setAccountWithCurUser;
+
 @end

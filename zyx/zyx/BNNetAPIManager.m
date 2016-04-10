@@ -6,6 +6,11 @@
 //  Copyright © 2016年 gusijian. All rights reserved.
 //
 
+#define kUrl_User_Login @"user/Login"
+#define kUrl_User_Register @"user/Register"
+#define kUrl_User_Register @"user/Logout"
+
+
 #import "BNNetAPIManager.h"
 #import "BNNetAPIClient.h"
 
@@ -27,6 +32,18 @@
     parameters[@"phoneNumber"] = number;
     [[BNNetAPIClient sharedHTTPClient] requestJsonDataWithPath:path withParams:parameters withMethodType:Get andBlock:block];
 }
+
+#pragma mark login
+-(void)request_Login_WithParams:(id)params andBlock:(void (^)(id, NSError *))block
+{
+    [[BNNetAPIClient sharedHTTPClient] requestJsonDataWithPath:kUrl_User_Login withParams:params withMethodType:Post andBlock:block];
+}
+-(void)request_Register_WithParams:(id)params andBlock:(void (^)(id, NSError *))block
+{
+    [[BNNetAPIClient sharedHTTPClient] requestJsonDataWithPath:kUrl_User_Register withParams:params withMethodType:Post andBlock:block];
+}
+
+
 //-(void)test
 //{
 //    NSString *path = @"api/v2/account/register";
