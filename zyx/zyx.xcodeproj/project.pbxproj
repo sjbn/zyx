@@ -14,6 +14,7 @@
 		208032021CB925D5004D817A /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 208032011CB925D5004D817A /* NSString+FontAwesome.m */; };
 		208032041CB925E0004D817A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 208032031CB925E0004D817A /* FontAwesome.ttf */; };
 		208032081CBA12F4004D817A /* BNApiResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 208032071CBA12F4004D817A /* BNApiResult.m */; };
+		2080320B1CBA5596004D817A /* BNRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2080320A1CBA5596004D817A /* BNRegisterViewController.m */; };
 		2090F2B51CAEC72600AA850F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F2B41CAEC72600AA850F /* main.m */; };
 		2090F2B81CAEC72600AA850F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F2B71CAEC72600AA850F /* AppDelegate.m */; };
 		2090F2BB1CAEC72600AA850F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2090F2BA1CAEC72600AA850F /* ViewController.m */; };
@@ -566,6 +567,8 @@
 		208032031CB925E0004D817A /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		208032061CBA12F4004D817A /* BNApiResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNApiResult.h; sourceTree = "<group>"; };
 		208032071CBA12F4004D817A /* BNApiResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNApiResult.m; sourceTree = "<group>"; };
+		208032091CBA5596004D817A /* BNRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRegisterViewController.h; sourceTree = "<group>"; };
+		2080320A1CBA5596004D817A /* BNRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRegisterViewController.m; sourceTree = "<group>"; };
 		2090F2B01CAEC72600AA850F /* zyx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zyx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2090F2B41CAEC72600AA850F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2090F2B61CAEC72600AA850F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2178,6 +2181,8 @@
 			children = (
 				208031F41CB89929004D817A /* BNLoginViewController.h */,
 				208031F51CB89929004D817A /* BNLoginViewController.m */,
+				208032091CBA5596004D817A /* BNRegisterViewController.h */,
+				2080320A1CBA5596004D817A /* BNRegisterViewController.m */,
 			);
 			name = Me;
 			sourceTree = "<group>";
@@ -2891,6 +2896,7 @@
 				2090F74F1CB0A13E00AA850F /* User.m in Sources */,
 				208031F71CB89929004D817A /* BNLoginViewController.m in Sources */,
 				2090F6FC1CAF436200AA850F /* BNHome_RootViewController.m in Sources */,
+				2080320B1CBA5596004D817A /* BNRegisterViewController.m in Sources */,
 				2090F7391CAF554C00AA850F /* UIImage+Common.m in Sources */,
 				2090F2B81CAEC72600AA850F /* AppDelegate.m in Sources */,
 				208032021CB925D5004D817A /* NSString+FontAwesome.m in Sources */,
